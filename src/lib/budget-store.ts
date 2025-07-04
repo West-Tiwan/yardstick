@@ -6,7 +6,7 @@ import { getBudgetsCollection } from './mongodb';
 const fallbackBudgets: Budget[] = [];
 
 let useMongoFallback = false;
-let budgetDataInitialized = false;
+const budgetDataInitialized = false;
 
 // Test MongoDB connection
 async function testMongoConnection(): Promise<boolean> {
@@ -35,7 +35,7 @@ export const budgetStore = {
       const budgets = await collection.find({}).sort({ month: -1, category: 1 }).toArray();
       
       // Convert MongoDB _id to string
-      return budgets.map((budget: any) => ({
+      return budgets.map((budget) => ({
         ...budget,
         _id: budget._id?.toString(),
       }));

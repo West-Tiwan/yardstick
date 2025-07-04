@@ -1,11 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { budgetStore } from '@/lib/budget-store';
 
-type Params = { params: { id: string } };
+type Params = Promise<{ id: string }>;
 
-export async function GET(request: NextRequest, { params }: Params) {
+export async function GET(request: NextRequest, { params }: { params: Params }) {
   try {
-    const budget = await budgetStore.getById(params.id);
+    const { id } = await params;
+    const budget = await budgetStore.getById(id);
     
     if (!budget) {
       return NextResponse.json(
@@ -24,8 +25,9 @@ export async function GET(request: NextRequest, { params }: Params) {
   }
 }
 
-export async function PUT(request: NextRequest, { params }: Params) {
+export async function PUT(request: NextRequest, { params }: { params: Params }) {
   try {
+    const { id } = await params;
     const updateData = await request.json();
     
     // Validate amount
@@ -36,7 +38,7 @@ export async function PUT(request: NextRequest, { params }: Params) {
       );
     }
     
-    const budget = await budgetStore.update(params.id, updateData);
+    const budget = await budgetStore.update(id, updateData);
     
     if (!budget) {
       return NextResponse.json(
@@ -55,9 +57,10 @@ export async function PUT(request: NextRequest, { params }: Params) {
   }
 }
 
-export async function DELETE(request: NextRequest, { params }: Params) {
+export async function DELETE(request: NextRequest, { params }: { params: Params }) {
   try {
-    const success = await budgetStore.delete(params.id);
+    const { id } = await params;
+    const success = await budgetStore.delete(id);
     
     if (!success) {
       return NextResponse.json(

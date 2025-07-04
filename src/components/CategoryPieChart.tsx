@@ -3,10 +3,11 @@
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CategoryExpense } from '@/types/transaction';
+import { PieChartTooltipProps, ChartLegendProps } from '@/types/chart';
 
-interface CategoryPieChartProps {
+type CategoryPieChartProps = {
   data: CategoryExpense[];
-}
+};
 
 export function CategoryPieChart({ data }: CategoryPieChartProps) {
   const formatCurrency = (amount: number) => {
@@ -16,7 +17,7 @@ export function CategoryPieChart({ data }: CategoryPieChartProps) {
     }).format(amount);
   };
 
-  const CustomTooltip = ({ active, payload }: any) => {
+  const CustomTooltip = ({ active, payload }: PieChartTooltipProps) => {
     if (active && payload && payload.length) {
       const data = payload[0].payload;
       const icon = data?.icon || '📝';
@@ -42,7 +43,7 @@ export function CategoryPieChart({ data }: CategoryPieChartProps) {
     return null;
   };
 
-  const CustomLegend = ({ payload }: any) => {
+  const CustomLegend = ({ payload }: ChartLegendProps) => {
     // Use the data directly since we're passing dataWithTotal manually
     const legendData = payload || dataWithTotal;
     
@@ -52,7 +53,7 @@ export function CategoryPieChart({ data }: CategoryPieChartProps) {
     
     return (
       <div className="grid grid-cols-2 gap-2 mt-4">
-        {legendData.map((entry: any, index: number) => {
+        {legendData.map((entry, index: number) => {
           const icon = entry?.icon || '📝';
           const category = entry?.category || 'Unknown';
           const color = entry?.color || '#64748b';

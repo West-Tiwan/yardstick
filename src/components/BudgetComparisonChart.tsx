@@ -3,11 +3,12 @@
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { BudgetComparison } from '@/types/budget';
+import { ChartTooltipProps } from '@/types/chart';
 
-interface BudgetComparisonChartProps {
+type BudgetComparisonChartProps = {
   data: BudgetComparison[];
   month: string;
-}
+};
 
 export function BudgetComparisonChart({ data, month }: BudgetComparisonChartProps) {
   const formatCurrency = (amount: number) => {
@@ -17,10 +18,10 @@ export function BudgetComparisonChart({ data, month }: BudgetComparisonChartProp
     }).format(amount);
   };
 
-  const CustomTooltip = ({ active, payload, label }: any) => {
+  const CustomTooltip = ({ active, payload, label }: ChartTooltipProps) => {
     if (active && payload && payload.length) {
-      const budgeted = payload.find((p: any) => p.dataKey === 'budgeted')?.value || 0;
-      const actual = payload.find((p: any) => p.dataKey === 'actual')?.value || 0;
+      const budgeted = payload.find((p) => p.dataKey === 'budgeted')?.value || 0;
+      const actual = payload.find((p) => p.dataKey === 'actual')?.value || 0;
       const difference = budgeted - actual;
       
       return (
