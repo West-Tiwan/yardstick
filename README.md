@@ -126,9 +126,3 @@ This is a personal finance tracking application. Contributions are welcome for:
 ## 📄 License
 
 This project is licensed under the MIT License.
-
-## 🔗 Links
-
-- **Live Demo**: [Coming Soon]
-- **GitHub Repository**: [Repository URL]
-- **Documentation**: [Coming Soon]
