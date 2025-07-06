@@ -122,7 +122,3 @@ This is a personal finance tracking application. Contributions are welcome for:
 - Performance optimizations
 - Additional chart types
 - Enhanced validation
-
-## 📄 License
-
-This project is licensed under the MIT License.
