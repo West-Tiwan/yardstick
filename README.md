@@ -62,29 +62,6 @@ A modern web application for tracking personal finances with interactive charts 
 5. **Open your browser**
    Navigate to [http://localhost:3000](http://localhost:3000)
 
-## 📁 Project Structure
-
-```
-src/
-├── app/
-│   ├── api/
-│   │   └── transactions/        # API routes for transactions
-│   ├── globals.css             # Global styles
-│   ├── layout.tsx              # Root layout
-│   └── page.tsx                # Home page
-├── components/
-│   ├── ui/                     # shadcn/ui components
-│   ├── TransactionForm.tsx     # Transaction form component
-│   ├── TransactionList.tsx     # Transaction list component
-│   └── MonthlyExpensesChart.tsx # Chart component
-├── hooks/
-│   └── use-toast.ts            # Toast notification hook
-├── lib/
-│   ├── data-store.ts           # In-memory data store
-│   └── utils.ts                # Utility functions
-└── types/
-    └── transaction.ts          # TypeScript type definitions
-```
 
 ## 🎯 Current Implementation
 
